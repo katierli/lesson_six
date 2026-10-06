@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ThemeToggle from '../components/ThemeToggle.vue'
 import LinkButton from '../components/LinkButton.vue'
+import ProfileHeader from '../components/ProfileHeader.vue'
 
 interface LinkItem {
   label: string
@@ -25,16 +26,11 @@ const links: LinkItem[] = [
         </div>
 
         <v-card class="mx-auto pa-6 text-center" max-width="480" width="100%" rounded="lg">
-          <v-avatar size="96" color="surface-variant" class="mb-4">
-            <span class="text-h6">KL</span>
-          </v-avatar>
-
-          <v-card-title class="text-h5 font-weight-bold justify-center pa-0">
-            Katie Li
-          </v-card-title>
-          <v-card-subtitle class="text-wrap mb-6 pa-0">
-            Designer &amp; builder of delightful digital things.
-          </v-card-subtitle>
+          <ProfileHeader
+            initials="KL"
+            name="Katie Li"
+            bio="Designer &amp; builder of delightful digital things."
+          />
 
           <v-row dense>
             <v-col v-for="link in links" :key="link.label" cols="12">
