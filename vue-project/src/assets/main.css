@@ -1,0 +1,9 @@
+@import './base.css';
+
+#app {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem;
+  position: relative;
+}
