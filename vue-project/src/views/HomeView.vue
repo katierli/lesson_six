@@ -1,109 +1,48 @@
 <script setup lang="ts">
+import ThemeToggle from '../components/ThemeToggle.vue'
+import LinkButton from '../components/LinkButton.vue'
+
 interface LinkItem {
   label: string
-  href: string
+  url: string
   icon: string
 }
 
 const links: LinkItem[] = [
-  { label: 'Portfolio', href: 'https://example.com', icon: '🎨' },
-  { label: 'Dribbble', href: 'https://dribbble.com/', icon: '🏀' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/', icon: '💼' },
-  { label: 'Email', href: 'mailto:hello@example.com', icon: '✉️' },
+  { label: 'Portfolio', url: 'https://example.com', icon: 'mdi-briefcase-outline' },
+  { label: 'Dribbble', url: 'https://dribbble.com/', icon: 'mdi-basketball' },
+  { label: 'LinkedIn', url: 'https://linkedin.com/', icon: 'mdi-linkedin' },
+  { label: 'Email', url: 'mailto:hello@example.com', icon: 'mdi-email-outline' },
 ]
 </script>
 
 <template>
-  <main class="card">
-    <div class="avatar" aria-hidden="true">KL</div>
-    <h1 class="name">Katie Li</h1>
-    <p class="tagline">Designer &amp; builder of delightful digital things.</p>
+  <v-container class="fill-height" fluid>
+    <v-row justify="center" align="center" class="fill-height">
+      <v-col cols="12" sm="8" md="6" lg="4">
+        <div class="d-flex justify-end mb-2">
+          <ThemeToggle />
+        </div>
 
-    <nav class="links">
-      <a
-        v-for="link in links"
-        :key="link.label"
-        class="link-button"
-        :href="link.href"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="link-icon" aria-hidden="true">{{ link.icon }}</span>
-        <span>{{ link.label }}</span>
-      </a>
-    </nav>
-  </main>
+        <v-card class="mx-auto pa-6 text-center" max-width="480" width="100%" rounded="lg">
+          <v-avatar size="96" color="surface-variant" class="mb-4">
+            <span class="text-h6">KL</span>
+          </v-avatar>
+
+          <v-card-title class="text-h5 font-weight-bold justify-center pa-0">
+            Katie Li
+          </v-card-title>
+          <v-card-subtitle class="text-wrap mb-6 pa-0">
+            Designer &amp; builder of delightful digital things.
+          </v-card-subtitle>
+
+          <v-row dense>
+            <v-col v-for="link in links" :key="link.label" cols="12">
+              <LinkButton :label="link.label" :url="link.url" :icon="link.icon" />
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
-
-<style scoped>
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  background: var(--color-bg-soft);
-  border: 1px solid var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--color-heading);
-  margin-bottom: 1rem;
-}
-
-.name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-heading);
-}
-
-.tagline {
-  color: var(--color-text);
-  opacity: 0.8;
-  margin: 0.5rem 0 1.75rem;
-}
-
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  width: 100%;
-}
-
-.link-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  width: 100%;
-  padding: 0.85rem 1rem;
-  border-radius: 0.75rem;
-  border: 1px solid var(--color-border);
-  background: var(--color-button-bg);
-  color: var(--color-heading);
-  text-decoration: none;
-  font-weight: 500;
-  transition:
-    background-color 0.2s,
-    transform 0.1s;
-}
-
-.link-button:hover {
-  background: var(--color-button-bg-hover);
-}
-
-.link-button:active {
-  transform: scale(0.98);
-}
-
-.link-icon {
-  font-size: 1.1rem;
-}
-</style>
